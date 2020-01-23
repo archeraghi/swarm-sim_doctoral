@@ -118,6 +118,7 @@ class Particle(matter.matter):
         :param dir: The direction must be either: E, SE, SW, W, NW, or NE
         :return: True: Success Moving;  False: Non moving
         """
+        #print("Moving")
         dir_coord = self.sim.get_coords_in_dir(self.coords, dir)
         #sim = self.sim_to_coords(dir_coord[0], dir_coord[1])
         #print ("sim actual coord "+ str(sim))
@@ -126,27 +127,29 @@ class Particle(matter.matter):
                 dir = dir - 3 if dir > 2 else dir + 3
                 dir_coord = self.sim.get_coords_in_dir(self.coords, dir)
 
-        if self.sim.check_coords(dir_coord[0], dir_coord[1]):
+        if self.sim.check_coords(dir_coord[0], dir_coord[1]) and dir_coord not in self.sim.particle_map_coords:
+            #for coords in self.sim.particle_map_coords:
+                #print("Actual Particle Map Coords List", coords)
 
             try:  # cher: added so the program does not crashed if it does not find any entries in the map
                 del self.sim.particle_map_coords[self.coords]
             except KeyError:
                 pass
 
-            if not self.coords in self.sim.particle_map_coords:
-                self.coords = dir_coord
-                self.sim.particle_map_coords[self.coords] = self
-                logging.info("particle %s successfully moved to %s", str(self.get_id()), dir)
-                self.sim.csv_round_writer.update_metrics(steps=1)
-                self.csv_particle_writer.write_particle(steps=1)
-                self.touch()
-                if self.carried_tile is not None:
-                    self.carried_tile.coords = self.coords
-                    self.carried_tile.touch()
-                elif self.carried_particle is not None:
-                    self.carried_particle.coords = self.coords
-                    self.carried_particle.touch()
-                return True
+            #print("Particle", self.number, "moving from ", self.coords, " to", dir_coord)
+            self.coords = dir_coord
+            self.sim.particle_map_coords[self.coords] = self
+            logging.info("particle %s successfully moved to %s", str(self.get_id()), dir)
+            self.sim.csv_round_writer.update_metrics(steps=1)
+            self.csv_particle_writer.write_particle(steps=1)
+            self.touch()
+            if self.carried_tile is not None:
+                self.carried_tile.coords = self.coords
+                self.carried_tile.touch()
+            elif self.carried_particle is not None:
+                self.carried_particle.coords = self.coords
+                self.carried_particle.touch()
+            return True
         return False
 
     def move_to_in_bounds(self, dir):

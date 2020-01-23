@@ -71,8 +71,56 @@ def scenario(sim):
 
     #sim.add_particle(end_point_on_x[0]-0.5, end_point_on_x [1]+i-1)
 
+    ### Field size 4
+    # sim.add_particle(square_size/2+0.5, round(square_size/2)+1)
+    # sim.add_particle(square_size / 2 + 0.5 + 1, round(square_size / 2)+1)
+    # sim.add_particle(square_size / 2 + 0.5 - 1, round(square_size / 2)+1)
+    # sim.add_particle(square_size / 2 + 0.5 - 2, round(square_size / 2)+1)
+    # sim.add_particle(square_size / 2 - 1, round(square_size / 2) )
+    # sim.add_particle(square_size / 2 , round(square_size / 2) )
 
     sim.add_particle(square_size/2+0.5, round(square_size/2))
+    # sim.add_particle(square_size / 2 + 0.5 + 1, round(square_size / 2))
+    # sim.add_particle(square_size / 2 + 0.5 - 1, round(square_size / 2))
+    # sim.add_particle(square_size / 2 + 0.5 - 2, round(square_size / 2))
+    # sim.add_particle(square_size / 2 - 1, round(square_size / 2) +1)
+    # sim.add_particle(square_size / 2 - 2, round(square_size / 2) +1)
+    # sim.add_particle(square_size / 2 , round(square_size / 2) +1)
+    # sim.add_particle(square_size / 2 +1, round(square_size / 2) +1)
+    # sim.add_particle(square_size / 2 + 2, round(square_size / 2) + 1)
+    # sim.add_particle(square_size/2+0.5, round(square_size/2) +2)
+    # sim.add_particle(square_size / 2 + 0.5 + 1, round(square_size / 2)+2)
+    # sim.add_particle(square_size / 2 + 0.5 - 1, round(square_size / 2)+2)
+    # sim.add_particle(square_size / 2 + 0.5 - 2, round(square_size / 2)+2)
+    # sim.add_particle(square_size / 2 - 1, round(square_size / 2)-1)
+    # sim.add_particle(square_size / 2 - 2, round(square_size / 2)-1)
+    # sim.add_particle(square_size / 2, round(square_size / 2) -1)
+    # sim.add_particle(square_size / 2 + 1, round(square_size / 2)-1 )
+    # sim.add_particle(square_size / 2 + 2, round(square_size / 2) -1)
+
+    # sim.add_particle(square_size/2+0.5, round(square_size/2) -2)
+    # sim.add_particle(square_size / 2 + 0.5 + 1, round(square_size / 2)-2)
+    # sim.add_particle(square_size / 2 + 0.5 - 1, round(square_size / 2)-2)
+    # sim.add_particle(square_size / 2 + 0.5 - 2, round(square_size / 2)-2)
+    # sim.add_particle(square_size / 2 - 1, round(square_size / 2) -1)
+    # sim.add_particle(square_size / 2 - 2, round(square_size / 2) -1)
+    # sim.add_particle(square_size / 2 , round(square_size / 2) -1)
+    # sim.add_particle(square_size / 2 , round(square_size / 2) -1)
+    #
+    # sim.add_particle(square_size/2+0.5, round(square_size/2) -4)
+    # sim.add_particle(square_size / 2 + 0.5 + 1, round(square_size / 2)-4)
+    # sim.add_particle(square_size / 2 + 0.5 - 1, round(square_size / 2)-4)
+    # sim.add_particle(square_size / 2 + 0.5 - 2, round(square_size / 2)-4)
+    # sim.add_particle(square_size / 2 - 1, round(square_size / 2) -3)
+    # sim.add_particle(square_size / 2 - 2, round(square_size / 2) -3)
+    # sim.add_particle(square_size / 2 , round(square_size / 2) -3)
+    # sim.add_particle(square_size / 2 , round(square_size / 2) -3)
+    # sim.add_particle(square_size / 2 +1, round(square_size / 2) -3)
+    # sim.add_particle(square_size / 2 +1, round(square_size / 2) -3)
+    # sim.add_particle(square_size / 2 - 1, round(square_size / 2) - 3)
+    # sim.add_particle(square_size / 2 - 1, round(square_size / 2) - 3)
+
+    #
     #creates locations on the x coordinate from the ending point of the y coordinate
     for i in range (0, square_size+1):
         if square_size % 2 == 1:

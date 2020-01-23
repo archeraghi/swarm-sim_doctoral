@@ -45,6 +45,7 @@ location_count = {"constricted": 363,
                   "square": 527,
                   "edgy": 321,
                   "crescent": 187,
+                  "square_generator": 18,
                   "test": 45}
 
 
@@ -470,21 +471,27 @@ def get_next_location(particle, target_location):
 
 # Handles the movement of the particle through the terrain
 def move(sim, particle, next_location):
+    #print("Moving Local")
     particle.previous_location = particle.current_location
     next_direction = get_dir(particle.current_location, next_location)
-    particle.current_location = next_location
+    # particle.current_location = next_location
     mark_location(sim, particle)
     particle.move_to(next_direction)
+    particle.current_location = particle.coords
     particle.current_location = get_location_with_coords(particle.graph, particle.coords)
     discover_adjacent_locations(sim, particle)
 
+
+    #for coords in sim.particle_map_coords:
+       # print("Actual Particle Map Coords List", coords)
 
 def solution(sim):
     global all_marked
 
     done_particles = 0
 
-    scenario_name = sim.config_data.scenario
+    #scenario_name = sim.config_data.scenario
+    scenario_name = 'square_generator'
     start_communication_round = sim.config_data.start_communication_round
     communication_frequency = sim.config_data.communication_frequency
     communication_range = sim.config_data.communication_range
@@ -512,6 +519,7 @@ def solution(sim):
                     if check_all_marked(sim, location_count[scenario_name]):
                         all_marked = True
                         sim.csv_round_writer.marking_success()
+                        print('#######################################', sim.get_actual_round())
                         sim.csv_round_writer.set_marking_success_round(sim.get_actual_round())
 
             if sim.get_actual_round() > start_communication_round:
@@ -602,23 +610,29 @@ def solution(sim):
 
             else:
                 mark_location(sim, particle)
+                if particle.done is False:
+                    particle.csv_particle_writer.set_task_success_round(sim.get_actual_round())
+                particle.last_visited_locations.clear()
+                done_particles += 1
+                particle.done = True
+                continue
 
-                if particle.current_location.coords == particle.start_location.coords:
-                    particle.target_reached = True
-
-                    if particle.done is False:
-                        particle.csv_particle_writer.set_task_success_round(sim.get_actual_round())
-                    particle.last_visited_locations.clear()
-                    done_particles += 1
-                    particle.done = True
-                    continue
-
-                else:
-                    particle.target_reached = False
-                    particle.target_location = particle.start_location
-                    particle.next_location = get_next_location(particle, particle.target_location)
-                    move(sim, particle, particle.next_location)
-                    continue
+                # if particle.current_location.coords == particle.start_location.coords:
+                #     particle.target_reached = True
+                #
+                #     if particle.done is False:
+                #         particle.csv_particle_writer.set_task_success_round(sim.get_actual_round())
+                #     particle.last_visited_locations.clear()
+                #     done_particles += 1
+                #     particle.done = True
+                #     continue
+                #
+                # else:
+                #     particle.target_reached = False
+                #     particle.target_location = particle.start_location
+                #     particle.next_location = get_next_location(particle, particle.target_location)
+                #     move(sim, particle, particle.next_location)
+                #     continue
 
     if done_particles == len(sim.get_particle_list()):
         sim.success_termination()
