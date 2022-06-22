@@ -51,7 +51,6 @@ def next_leader(world, coated_locations, subject_locations):
         else:
             leader.subject_locations.remove(leader.coordinates)
     leader.subject_locations = get_sorted_list_of_particles_distances(leader, leader.subject_locations)
-    leader.subject_locations = []
     setattr(leader, "coated_locations", [])
     setattr(leader, "aim", ())
     setattr(leader, "previous_location", leader.aim)
@@ -67,6 +66,7 @@ def next_leader(world, coated_locations, subject_locations):
     setattr(leader, "state", "toTile")
     setattr(leader, "layer", 0)
     if world.config_data.seed_value >1:
+        leader.subject_locations = []
         leader.subject_locations.append(particle_generator(world).coordinates)
     if distance == 1:
         setattr(leader, "state", "scanning")
@@ -182,8 +182,8 @@ def handle_scanned_locations(leader):
 
 
 def enough_particles(leader):
-    subjects_cardinality = leader.world.config_data.seed_value - particle_cnt +1
-
+    #subjects_cardinality = leader.world.config_data.seed_value - particle_cnt +1
+    subjects_cardinality = len(leader.world.particles)
     locations_cardinality = len(leader.uncoated_locations)
     paths_cardinality = 0
     caves_cardinality = 0
