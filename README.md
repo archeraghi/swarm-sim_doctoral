@@ -5,23 +5,13 @@ For Linux:
     unzip swarm-world.zip
 
 
--install the following python packages:
+-install the following python:
 
     1. sudo apt-get install python3.6 python3-pip 
 
-    2. sudo pip3 install numpy
+- pip3 install -r requirements.txt
 
-    3. sudo pip3 install pandas
-
-    4. sudo pip3 install PyOpenGL
-    
-    5. sudo pip3 install Pillow
-    
-    6. sudo pip3 install PyQt5
-    
-    7. sudo pip3 install opencv-python
-    
-for older Systems (e.g. Ubuntu 14.04) install the PyQt5 version 5.10.1
+- for older Systems (e.g. Ubuntu 14.04) install the PyQt5 version 5.10.1
 
     6. sudo pip3 install PyQt5==5.10.1
 
