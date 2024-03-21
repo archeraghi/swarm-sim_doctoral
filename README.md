@@ -5,21 +5,13 @@ For Linux:
     unzip swarm-world.zip
 
 
--install the following python packages:
+-install the following python:
 
     1. sudo apt-get install python3.6 python3-pip 
 
-    2. sudo pip3 install numpy
+- pip3 install -r requirements.txt
 
-    3. sudo pip3 install pandas
-
-    4. sudo pip3 install PyOpenGL
-    
-    5. sudo pip3 install Pillow
-    
-    6. sudo pip3 install PyQt5
-    
-for older Systems (e.g. Ubuntu 14.04) install the PyQt5 version 5.10.1
+- for older Systems (e.g. Ubuntu 14.04) install the PyQt5 version 5.10.1
 
     6. sudo pip3 install PyQt5==5.10.1
 
@@ -52,6 +44,7 @@ For Windows/Linux/MacOs:
     4. PyOpenGL
     5. Pillow
     6. PyQt5 (in version 5.10.1 for older Systems like Ubuntu 14.04)
+    7. opencv-python
 - press Okey
 - wait until everything is installed
 - chose Run->swarm-sim.py
